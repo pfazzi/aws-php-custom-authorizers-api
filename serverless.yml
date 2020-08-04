@@ -1,4 +1,4 @@
-service: aws-php-cognito-api
+service: aws-php-api
 
 provider:
   name: aws
