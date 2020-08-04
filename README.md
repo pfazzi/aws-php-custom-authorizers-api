@@ -1,1 +1,1 @@
-# aws-php-auth0-cognito-custom-authorizers-api
+# aws-php-custom-authorizers-api
