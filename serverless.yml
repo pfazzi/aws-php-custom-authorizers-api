@@ -1,0 +1,42 @@
+service: aws-php-cognito-api
+
+provider:
+  name: aws
+  runtime: provided
+  region: ${opt:region, 'eu-central-1'}
+
+plugins:
+  - ./vendor/bref/bref
+
+functions:
+  publicEndpoint:
+    handler: public.php
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      - http:
+          path: api/public
+          method: get
+          cors: true
+  auth:
+    handler: auth.php
+    layers:
+      - ${bref:layer.php-74}
+  privateEndpoint:
+    handler: private.php
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      - http:
+          path: api/private
+          method: get
+          authorizer: auth
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
