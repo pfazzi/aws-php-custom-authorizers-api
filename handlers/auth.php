@@ -4,7 +4,7 @@ use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 function allowPolicy(string $methodArn)
 {
@@ -39,7 +39,6 @@ function denyPolicy()
         ]
     ];
 }
-
 
 return function ($event) {
     $token = substr($event['authorizationToken'] ?? 'Bearer ', 7);

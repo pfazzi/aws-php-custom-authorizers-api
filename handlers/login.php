@@ -5,10 +5,10 @@ use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $signer = new Sha256();
-$privateKey = new Key('file://private_key.pem');
+$privateKey = new Key('file://./../private_key.pem');
 
 $time = time();
 $token = (new Builder())
@@ -24,5 +24,5 @@ $token = (new Builder())
 header('Content-Type: application/json');
 
 echo json_encode([
-    'token' => (string) $token
+    'token' => (string)$token
 ]);

@@ -21,7 +21,7 @@ $token = (new Builder())
     ->withClaim('uid', 1) // Configures a new claim, called "uid"
     ->getToken($signer, $privateKey); // Retrieves the generated token
 
-$auth = require __DIR__.'/auth.php';
+$auth = require __DIR__ . '/handlers/auth.php';
 
 $policy = $auth([
     'authorizationToken' => 'Bearer ' . $token,
