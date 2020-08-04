@@ -1,0 +1,14 @@
+{
+    "name": "pfazzi/aws-php-custom-authorizers-api",
+    "authors": [
+        {
+            "name": "pfazzi",
+            "email": "patrick91@live.it"
+        }
+    ],
+    "require": {
+        "lcobucci/jwt": "^3.3",
+        "bref/bref": "^0.5.29",
+        "ext-json": "*"
+    }
+}

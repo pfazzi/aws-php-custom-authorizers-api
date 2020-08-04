@@ -1,5 +1,9 @@
 <?php
 
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Signer\Key;
+use Lcobucci\JWT\Signer\Rsa\Sha256;
+
 require __DIR__ . '/vendor/autoload.php';
 
 function allowPolicy(string $methodArn)
@@ -38,10 +42,14 @@ function denyPolicy()
 
 
 return function ($event) {
-    $token = $event['authorizationToken'] ?? '';
+    $token = substr($event['authorizationToken'] ?? 'Bearer ', 7);
     $methodArn = $event['methodArn'];
 
-    if ($token === 'OK') {
+    $signer = new Sha256();
+    $publicKey = new Key('file://public_key.pem');
+
+    $token = (new Parser())->parse($token);
+    if ($token->verify($signer, $publicKey)) {
         return allowPolicy($methodArn);
     }
 

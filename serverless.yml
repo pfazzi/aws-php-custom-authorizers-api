@@ -8,8 +8,32 @@ provider:
 plugins:
   - ./vendor/bref/bref
 
+package:
+  exclude:
+    - .gitignore
+    - composer.json
+    - composer.lock
+    - Makefile
+    - README.md
+    - test.php
+
 functions:
-  publicEndpoint:
+  login:
+    handler: login.php
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      - http:
+          path: api/login
+          method: post
+          cors: true
+
+  auth:
+    handler: auth.php
+    layers:
+      - ${bref:layer.php-74}
+
+  public_endpoint:
     handler: public.php
     layers:
       - ${bref:layer.php-74-fpm}
@@ -18,11 +42,8 @@ functions:
           path: api/public
           method: get
           cors: true
-  auth:
-    handler: auth.php
-    layers:
-      - ${bref:layer.php-74}
-  privateEndpoint:
+
+  private_endpoint:
     handler: private.php
     layers:
       - ${bref:layer.php-74-fpm}

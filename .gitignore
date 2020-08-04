@@ -1,0 +1,5 @@
+/vendor/
+/.serverless/
+/composer.lock
+private_key.pem
+public_key.pem
