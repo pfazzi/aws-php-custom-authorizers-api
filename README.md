@@ -22,5 +22,5 @@ $ curl -X POST https://{app-id}.execute-api.{region}.amazonaws.com/dev/api/login
 ```
 Access to a private resource:
 ```bash
-$ curl -H "Authorization: Bearer <JWT>" ttps://{app-id}.execute-api.{region}.amazonaws.com/dev/api/private
+$ curl -H "Authorization: Bearer <JWT>" https://{app-id}.execute-api.{region}.amazonaws.com/dev/api/private
 ```
