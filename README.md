@@ -1,5 +1,5 @@
 This is a demo project showing how to implement a custom authenticator based on a JWT
-with Serverless framework, PHP and Bref.
+with Serverless framework, PHP and Bref.    
 
 ### Install and Deploy
 ```bash
